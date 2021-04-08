@@ -6,38 +6,56 @@ Page({
    * 页面的初始数据
    */
   data: {
-    bannerList: [],
-    recommendList: [],
-    topList: []
+    phone: '13294106618',
+    password: '1210795272'
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    request('/banner',{type: 2}).then(data => {
-      this.setData({
-        bannerList: data.banners
-      })
-    })
-    request('/personalized',{limit: 10}).then(data => {
-      this.setData({
-        recommendList: data.result
-      })
-    })
-    let index = 1005
-    let resultArr = []
-    while(index <= 1009){
-      request('/playlist/detail',{id: index++}).then(data => {
-        let result = {name: data.playlist.name, tracks: data.playlist.tracks.slice(0,3)}
-        resultArr.push(result)
-        this.setData({
-          topList: resultArr
-        })
-      })
-    }
+
   },
 
+  handleInput(event) {
+    let type = event.currentTarget.id
+    this.setData({
+      [type]: event.detail.value
+    })
+  },
+
+  login() {
+    let {phone,password} = this.data
+    if(!phone) {
+      wx.showToast({
+        title: '手机号不能为空',
+        icon: 'none'
+      })
+      return
+    }
+    let phoneReg = /^1(3|4|5|6|7|8|9)\d{9}$/
+    if(!phoneReg.test(phone)) {
+      wx.showToast({
+        title: '手机号格式错误',
+        icon: 'none'
+      })
+      return;
+    }
+    if(!password) {
+      wx.showToast({
+        title: '密码不能为空',
+        icon: 'none'
+      })
+    }
+    request('/login/cellphone',{phone,password}).then(data => {
+      wx.setStorageSync('userInfo',JSON.stringify(data.profile))
+      wx.reLaunch({
+        url: '/pages/home/home'
+      })
+    })
+
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -1,43 +1,35 @@
 import request from "../../utils/request";
-
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    bannerList: [],
-    recommendList: [],
-    topList: []
+    userInfo: {},
+    recentPlayList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    request('/banner',{type: 2}).then(data => {
+    if(wx.getStorageSync('userInfo')) {
       this.setData({
-        bannerList: data.banners
+        userInfo: JSON.parse(wx.getStorageSync('userInfo'))
       })
-    })
-    request('/personalized',{limit: 10}).then(data => {
-      this.setData({
-        recommendList: data.result
-      })
-    })
-    let index = 1005
-    let resultArr = []
-    while(index <= 1009){
-      request('/playlist/detail',{id: index++}).then(data => {
-        let result = {name: data.playlist.name, tracks: data.playlist.tracks.slice(0,3)}
-        resultArr.push(result)
+      request('/user/record',{uid: this.data.userInfo.userId,type: 1}).then(data => {
         this.setData({
-          topList: resultArr
+          recentPlayList: data.weekData
         })
       })
     }
   },
 
+  toLogin() {
+    wx.navigateTo({
+      url: '/pages/login/login'
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

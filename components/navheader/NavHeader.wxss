@@ -1,0 +1,18 @@
+.nav-header {
+    height: 80rpx;
+}
+
+.title {
+    font-size: 32rpx;
+    line-height: 80rpx;
+    color: #666;
+}
+
+.nav {
+    float: right;
+    border: 1rpx solid #333;
+    padding: 5rpx 10rpx;
+    margin-top: 15rpx;
+    font-size: 24rpx;
+    border-radius: 30rpx;
+}

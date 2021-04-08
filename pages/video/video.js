@@ -1,43 +1,49 @@
 import request from "../../utils/request";
-
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    bannerList: [],
-    recommendList: [],
-    topList: []
+    videoList: [],
+    currentID: 0,
+    videoGroup: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    request('/banner',{type: 2}).then(data => {
+    request('/video/group/list').then(data => {
       this.setData({
-        bannerList: data.banners
+        videoList: data.data.slice(0,14),
+        currentID: data.data[0].id
       })
     })
-    request('/personalized',{limit: 10}).then(data => {
-      this.setData({
-        recommendList: data.result
-      })
-    })
-    let index = 1005
-    let resultArr = []
-    while(index <= 1009){
-      request('/playlist/detail',{id: index++}).then(data => {
-        let result = {name: data.playlist.name, tracks: data.playlist.tracks.slice(0,3)}
-        resultArr.push(result)
-        this.setData({
-          topList: resultArr
-        })
-      })
-    }
+    this.getVideoGroup()
   },
 
+  changeID(event) {
+    let id = parseInt(event.currentTarget.id)
+    wx.showLoading({
+      title: '正在加载'
+    })
+    this.setData({
+      currentID: id,
+      videoGroup: []
+    })
+    this.getVideoGroup()
+  },
+  getVideoGroup() {
+    let id = this.data.currentID
+    request('/video/group',{id}).then(data => {
+      if(data.datas.length === 0) this.getVideoGroup()
+      this.setData({
+        videoGroup: data.datas
+      })
+      wx.hideLoading()
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

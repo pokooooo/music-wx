@@ -1,0 +1,45 @@
+<view>
+    <view class="header">
+        <image src="/static/images/video/video.jpg"></image>
+        <view class="search" bindtap="toSearch">
+            搜索音乐
+        </view>
+        <image src="/static/images/logo.png"></image>
+    </view>
+
+    <scroll-view enable-flex scroll-x style="display: flex;white-space: nowrap;height: 60rpx">
+            <view wx:for="{{videoList}}" class="navItem" wx:key="id">
+                <view class="{{currentID === item.id ? 'active' : ''}}" style="box-sizing: border-box;height: 60rpx" id="{{item.id}}" bindtap="changeID">{{item.name}}</view>
+            </view>
+    </scroll-view>
+
+    <scroll-view
+            scroll-y
+            class="videoScroll"
+    >
+        <view class="videoItem" wx:for="{{videoGroup}}" wx:key="index">
+            <video src="{{item.data.urlInfo.url}}" class="common"></video>
+
+            <view class="content">{{item.data.title}}</view>
+
+            <view class="footer">
+                <image class="avatar" src="{{item.data.creator.avatarUrl}}"></image>
+                <text class="nickName">{{item.data.creator.nickname}}</text>
+                <view class="comments_praised">
+                    <text class="item">
+                        <text class="iconfont icon-buoumaotubiao15"></text>
+                        <text class="count">{{item.data.praisedCount}}</text>
+                    </text>
+                    <text class="item">
+                        <text class="iconfont icon-pinglun1"></text>
+                        <text class="count">{{item.data.commentCount}}</text>
+                    </text>
+                    <button open-type="share" class="item btn">
+                        <text class="iconfont icon-gengduo"></text>
+                    </button>
+                </view>
+            </view>
+        </view>
+    </scroll-view>
+</view>
+
