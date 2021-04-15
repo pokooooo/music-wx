@@ -7,7 +7,8 @@ Page({
   data: {
     videoList: [],
     currentID: 0,
-    videoGroup: []
+    videoGroup: [],
+    isShow: false
   },
 
   /**
@@ -39,9 +40,18 @@ Page({
     request('/video/group',{id}).then(data => {
       if(data.datas.length === 0) this.getVideoGroup()
       this.setData({
-        videoGroup: data.datas
+        videoGroup: data.datas,
+        isShow: false
       })
       wx.hideLoading()
+    })
+  },
+  refresh() {
+    this.getVideoGroup()
+  },
+  toSearch() {
+    wx.navigateTo({
+      url: '/pages/search/search'
     })
   },
   /**

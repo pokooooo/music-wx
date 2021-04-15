@@ -1,9 +1,12 @@
 {
   "pages": [
+    "pages/search/search",
+    "pages/songdetail/songDetail",
     "pages/video/video",
     "pages/home/home",
     "pages/login/login",
     "pages/index/index"
+
 
   ],
   "window": {
@@ -40,5 +43,8 @@
         "selectedIconPath": "/static/images/tabs/tab-my-current.png"
       }
     ]
-  }
+  },
+  "requiredBackgroundModes": [
+    "audio"
+  ]
 }

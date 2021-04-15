@@ -1,0 +1,97 @@
+.search {
+    padding: 0 20rpx;
+}
+
+.header {
+    height: 60rpx;
+    line-height: 60rpx;
+    display: flex;
+    padding: 10rpx 0;
+}
+
+.searchInput {
+    flex: 1;
+    background-color: rgba(237, 237, 237, 0.3);
+    border-radius: 30rpx;
+    position: relative;
+}
+
+.searchIcon {
+    position: absolute;
+    left: 15rpx;
+}
+
+.inputContent {
+    height: 60rpx;
+    font-size: 28rpx;
+    margin-left: 60rpx;
+}
+
+.clear {
+    position: absolute;
+    right: 30rpx;
+    z-index: 10;
+    top: 0;
+    font-size: 30rpx;
+}
+
+.hotList {
+    margin-top: 30rpx;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.hotItem {
+    width: 50%;
+    height: 80rpx;
+    line-height: 80rpx;
+}
+
+.hotItem text {
+    font-size: 26rpx;
+}
+
+.hotItem .iconImg {
+    width: 35rpx;
+    height: 20rpx;
+    margin-left: 10rpx;
+}
+
+.searchItem {
+    height: 60rpx;
+    line-height: 60rpx;
+    display: flex;
+}
+
+
+.searchItem .content {
+    flex: 1;
+    margin-left: 20rpx;
+    border-bottom: 1rpx solid #eee;
+    font-size: 26rpx;
+}
+
+.history {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    line-height:  50rpx;
+    margin: 20rpx 0;
+}
+
+.history .historyItem {
+    height: 50rpx;
+    font-size: 26rpx;
+    background: #ededed;
+    margin-left: 20rpx;
+    padding: 0 30rpx;
+    border-radius: 20rpx;
+    margin-bottom: 20rpx;
+}
+
+.history .delete {
+    position: absolute;
+    bottom: 10rpx;
+    right: 15rpx;
+    font-size: 36rpx;
+}

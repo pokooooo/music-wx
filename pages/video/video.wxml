@@ -16,10 +16,12 @@
     <scroll-view
             scroll-y
             class="videoScroll"
+            refresher-enabled
+            bindrefresherrefresh="refresh"
+            refresher-triggered="{{isShow}}"
     >
         <view class="videoItem" wx:for="{{videoGroup}}" wx:key="index">
-            <video src="{{item.data.urlInfo.url}}" class="common"></video>
-
+            <image src="{{item.data.coverUrl}}" class="common"></image>
             <view class="content">{{item.data.title}}</view>
 
             <view class="footer">
