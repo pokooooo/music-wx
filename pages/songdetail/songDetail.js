@@ -10,7 +10,9 @@ Page({
     id: 1472480890,
     song: {},
     isPlay: true,
-    musicLink: ''
+    musicLink: '',
+    musicList: [],
+    showList: false
   },
 
   /**
@@ -37,8 +39,11 @@ Page({
         }
       })
       if(is) {
-        music.musicList.push(data)
+        music.musicList.unshift(data)
       }
+      this.setData({
+        musicList: music.musicList
+      })
     })
     this.getSongUrl().then(() => {
 
@@ -48,13 +53,19 @@ Page({
       this.backgroundAudioManager.title = this.data.song.name
       this.backgroundAudioManager.onPlay(() => {
         this.changePlayState(true);
-      });
+      })
       this.backgroundAudioManager.onPause(() => {
         this.changePlayState(false);
-      });
+      })
       this.backgroundAudioManager.onStop(() => {
         this.changePlayState(false);
-      });
+      })
+      this.backgroundAudioManager.onEnded(() => {
+        let index = Math.floor(Math.random() * music.musicList.length)
+        wx.redirectTo({
+          url: '/pages/songdetail/songDetail?id=' + music.musicList[index].id
+        })
+      })
     })
   },
   changePlayState(isPlay){
@@ -114,9 +125,42 @@ Page({
       }
     }
     if(index < 0 || index >= music.musicList.length) return
-    console.log(index)
-    wx.navigateTo({
+    wx.redirectTo({
       url: '/pages/songdetail/songDetail?id=' + music.musicList[index].id
+    })
+  },
+  show(){
+    let showList = !this.data.showList
+    this.setData({
+      showList
+    })
+  },
+  change(event) {
+    if (music.musicList[event.currentTarget.id].id === this.data.id) {
+      return
+    }
+    wx.redirectTo({
+      url: '/pages/songdetail/songDetail?id=' + music.musicList[event.currentTarget.id].id
+    })
+  },
+  delete(event) {
+    if (music.musicList[event.currentTarget.id].id === this.data.id) {
+      music.musicList.splice(event.currentTarget.id,1)
+      if(music.musicList.length === 0) {
+        wx.switchTab({
+          url: '/pages/index/index'
+        })
+        this.backgroundAudioManager.stop()
+        return
+      }
+      wx.redirectTo({
+        url: '/pages/songdetail/songDetail?id=' + music.musicList[event.currentTarget.id].id
+      })
+    } else {
+      music.musicList.splice(event.currentTarget.id,1)
+    }
+    this.setData({
+      musicList: music.musicList
     })
   },
   /**

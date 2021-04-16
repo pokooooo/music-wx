@@ -28,6 +28,14 @@
 
         <text class="iconfont icon-next" id="next" bindtap="handleSwitch"></text>
 
-        <text class="iconfont icon-iconsMusicyemianbofangmoshiPlayList"></text>
+        <text bindtap="show" class="iconfont icon-iconsMusicyemianbofangmoshiPlayList"></text>
+    </view>
+    <view wx:if="{{showList}}">
+        <scroll-view enable-flex scroll-y class="playList">
+            <view wx:for="{{musicList}}" wx:key="id" style="height: 60rpx;display: flex;font-size: 38rpx">
+                <view id="{{index}}" bindtap="change" class="{{item.id === id ? 'active' : ''}}" style="height:60rpx;padding-left:20rpx;line-height: 60rpx;width: 80%;overflow: hidden ">{{item.name}}</view>
+                <view id="{{index}}" bindtap="delete" style="height:60rpx;line-height: 60rpx">X</view>
+            </view>
+        </scroll-view>
     </view>
 </view>

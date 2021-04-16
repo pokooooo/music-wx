@@ -52,14 +52,14 @@
                 <text class="title">最近播放</text>
                 <scroll-view  wx:if="{{recentPlayList.length}}" scroll-x enable-flex style="display: flex;height: 200rpx">
                     <view wx:for="{{recentPlayList}}" wx:key="index" style="margin-right: 20rpx">
-                        <image src="{{item.song.al.picUrl}}" style="width: 200rpx;height: 200rpx;border-radius: 10rpx;"></image>
+                        <image src="{{item.song.al.picUrl}}" style="width: 200rpx;height: 200rpx;border-radius: 10rpx;" id="{{item.song.id}}"  bindtap="toSongDetail"></image>
                     </view>
                 </scroll-view>
                 <view wx:else>暂无播放记录</view>
             </view>
 
             <view class="cardList">
-                <view class="card-item">
+                <view class="card-item" bindtap="back">
                     <text class="title">我的音乐</text>
                     <text class="more"> > </text>
                 </view>

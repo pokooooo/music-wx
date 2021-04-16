@@ -1,5 +1,7 @@
 import request from "../../utils/request";
 
+let music = getApp().globalData
+
 Page({
 
   /**
@@ -36,6 +38,20 @@ Page({
         })
       })
     }
+  },
+  getListDetail(event) {
+    request('/playlist/detail',{id: event.currentTarget.id}).then(data => {
+      for(let item of data.playlist.tracks) {
+        let data = {
+          id: item.id.toString(),
+          name: item.name
+        }
+        music.musicList.push(data)
+      }
+      wx.navigateTo({
+        url: '/pages/songdetail/songDetail?id=' + music.musicList[0].id
+      })
+    })
   },
 
   /**

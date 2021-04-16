@@ -90,6 +90,12 @@ Page({
       url: '/pages/songdetail/songDetail?id=' + event.currentTarget.id
     })
   },
+  historySearch(event) {
+    this.setData({
+      searchContext: event.currentTarget.id
+    })
+    this.search()
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

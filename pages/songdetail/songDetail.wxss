@@ -4,6 +4,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
 }
 
 /* 底座 */
@@ -149,4 +150,20 @@
     height: 12rpx;
     border-radius: 50%;
     background: #fff;
+}
+
+.playList {
+    position: absolute;
+    z-index: 999;
+    bottom: 150rpx;
+    width: 400rpx;
+    height: 600rpx;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20rpx;
+}
+
+.active {
+    color: #d43c33;
 }

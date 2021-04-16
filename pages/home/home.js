@@ -1,4 +1,6 @@
 import request from "../../utils/request";
+
+let music = getApp().globalData
 Page({
 
   /**
@@ -24,10 +26,19 @@ Page({
       })
     }
   },
-
   toLogin() {
     wx.navigateTo({
       url: '/pages/login/login'
+    })
+  },
+  toSongDetail(event) {
+    wx.navigateTo({
+      url: '/pages/songdetail/songDetail?id=' + event.currentTarget.id
+    })
+  },
+  back() {
+    wx.navigateTo({
+      url: '/pages/songdetail/songDetail?id=' + music.musicID
     })
   },
   /**

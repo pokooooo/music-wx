@@ -30,7 +30,7 @@
         <NavHeader title="推荐歌单" nav="查看更多"></NavHeader>
         <scroll-view class="scroll" enable-flex scroll-x>
             <view class="scrollItem" wx:for="{{recommendList}}" wx:key="id">
-                <image src="{{item.picUrl}}"></image>
+                <image src="{{item.picUrl}}" id="{{item.id}}" bindtap="getListDetail"></image>
                 <text>{{item.name}}</text>
             </view>
         </scroll-view>
