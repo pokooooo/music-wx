@@ -41,15 +41,19 @@ Page({
   },
   getListDetail(event) {
     request('/playlist/detail',{id: event.currentTarget.id}).then(data => {
+      let isAdd = true
       for(let item of data.playlist.tracks) {
         let data = {
           id: item.id.toString(),
           name: item.name
         }
-        music.musicList.push(data)
+        for(let item of music.musicList) {
+          if(item.id === data.id) isAdd = false
+        }
+        if(isAdd) music.musicList.push(data)
       }
       wx.navigateTo({
-        url: '/pages/songdetail/songDetail?id=' + music.musicList[0].id
+        url: '/pages/songdetail/songDetail?id=' + data.playlist.tracks[0].id
       })
     })
   },

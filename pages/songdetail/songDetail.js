@@ -1,4 +1,5 @@
 import request from "../../utils/request";
+import moment from "moment";
 
 let music = getApp().globalData
 Page({
@@ -12,7 +13,9 @@ Page({
     isPlay: true,
     musicLink: '',
     musicList: [],
-    showList: false
+    showList: false,
+    currentTime: '00:00',
+    durationTime: '00:00'
   },
 
   /**
@@ -60,6 +63,14 @@ Page({
       this.backgroundAudioManager.onStop(() => {
         this.changePlayState(false);
       })
+      this.backgroundAudioManager.onTimeUpdate(() => {
+        let currentTime = moment(this.backgroundAudioManager.currentTime * 1000).format('mm:ss')
+        let currentWidth = this.backgroundAudioManager.currentTime/this.backgroundAudioManager.duration * 450;
+        this.setData({
+          currentTime,
+          currentWidth
+        })
+      })
       this.backgroundAudioManager.onEnded(() => {
         let index = Math.floor(Math.random() * music.musicList.length)
         wx.redirectTo({
@@ -77,8 +88,10 @@ Page({
   getSongDetail() {
     return new Promise(resolve => (
         request('/song/detail',{ids: this.data.id}).then(data => {
+          let durationTime = moment(data.songs[0].dt).format('mm:ss')
           this.setData({
-            song: data.songs[0]
+            song: data.songs[0],
+            durationTime
           })
           wx.setNavigationBarTitle({
             title: this.data.song.name
@@ -161,6 +174,11 @@ Page({
     }
     this.setData({
       musicList: music.musicList
+    })
+  },
+  close() {
+    this.setData({
+      showList: false
     })
   },
   /**

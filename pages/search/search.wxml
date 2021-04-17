@@ -12,6 +12,7 @@
         <view class="searchItem" wx:for="{{searchList}}" wx:key="id" id="{{item.id}}" bindtap="toSongDetail">
             <text class="iconfont icon-search1"></text>
             <text class="content">{{item.name}}</text>
+            <text class="content">{{item.artists[0].name}}{{item.artists[1].name ? '/' : '' }}{{item.artists[1].name}}</text>
         </view>
     </view>
     <view wx:else>

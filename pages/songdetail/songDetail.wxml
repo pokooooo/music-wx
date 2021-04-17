@@ -1,4 +1,4 @@
-<view class="songDetail">
+<view class="songDetail" bindtap="close">
     <view class="author">{{song.ar[0].name}}</view>
     <view class="circle"></view>
     <image class="needle {{isPlay && 'needleRotate'}}" src="/static/images/song/needle.png"></image>
@@ -28,7 +28,7 @@
 
         <text class="iconfont icon-next" id="next" bindtap="handleSwitch"></text>
 
-        <text bindtap="show" class="iconfont icon-iconsMusicyemianbofangmoshiPlayList"></text>
+        <text catchtap="show" class="iconfont icon-iconsMusicyemianbofangmoshiPlayList"></text>
     </view>
     <view wx:if="{{showList}}">
         <scroll-view enable-flex scroll-y class="playList">
