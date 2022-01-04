@@ -7,7 +7,6 @@
     position: relative;
 }
 
-/* 底座 */
 .circle {
     position: relative;
     z-index: 100;
@@ -17,7 +16,7 @@
     background: #fff;
     margin: 10rpx 0;
 }
-/* 摇杆 */
+
 .needle {
     position: relative;
     z-index: 99;
@@ -34,8 +33,6 @@
     transform: rotate(0deg);
 }
 
-
-/* 磁盘 */
 .discContainer {
     position: relative;
     top: -170rpx;
@@ -47,18 +44,6 @@
     animation: disc 4s linear infinite;
     animation-delay: 1s;
 }
-
-/*
-  @keyframes: 设置动画帧
-    1) from to
-      - 使用于简单的动画，只有起始帧和结束帧
-      - 北京 - 上海  直达
-    2) 百分比
-      - 多用于复杂的动画，动画不止两帧
-      - 北京 - 上海 ---> 北京 -- 天津 --- 深圳 --- 上海
-      - 0% - 100%, 可以任意拆分
-
-*/
 
 @keyframes disc {
     from {
@@ -141,7 +126,6 @@
 }
 
 
-/* 小圆球 */
 .audio-circle {
     position: absolute;
     right: -12rpx;

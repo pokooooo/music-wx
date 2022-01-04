@@ -9,11 +9,8 @@
     </view>
     <view class="progressControl">
         <text>{{currentTime}}</text>
-        <!-- 总进度条 -->
         <view class="barControl">
-            <!-- 实时进度条 -->
             <view class="audio-currentTime-Bar" style="width: {{currentWidth + 'rpx'}}">
-                <!-- 小圆球 -->
                 <view class="audio-circle"></view>
             </view>
         </view>

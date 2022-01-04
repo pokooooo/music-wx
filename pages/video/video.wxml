@@ -21,7 +21,21 @@
             refresher-triggered="{{isShow}}"
     >
         <view class="videoItem" wx:for="{{videoGroup}}" wx:key="index">
-            <image src="{{item.data.coverUrl}}" class="common"></image>
+            <video
+          src="{{item.videoUrl}}"
+          bindplay="handlePlay"
+          id="{{item.data.vid}}"
+          poster="{{item.data.coverUrl}}"
+          class="common"
+          object-fit="cover"
+          wx:if='{{videoId === item.data.vid}}'
+          bindtimeupdate="handleTimeUpdate"
+          bindended="handleEnded"
+      ></video>
+
+      <!-- 性能优化：使用image图片代替video标签 -->
+      <image wx:else bindtap="handlePlay" id="{{item.data.vid}}" class="common" src="{{item.data.coverUrl}}"></image>
+
             <view class="content">{{item.data.title}}</view>
 
             <view class="footer">

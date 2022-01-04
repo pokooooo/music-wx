@@ -6,9 +6,6 @@
     "pages/video/video",
     "pages/home/home",
     "pages/login/login"
-
-
-
   ],
   "window": {
     "navigationBarBackgroundColor": "#d43c33",

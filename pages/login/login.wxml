@@ -7,11 +7,11 @@
     <view class="input-content">
       <view class="input-item">
         <text class="tit">手机号码</text>
-        <input  type="text" placeholder="请输入手机号码" id="phone" bindinput="handleInput"/>
+        <input  value="{{phone}}" type="text" placeholder="请输入手机号码" id="phone" bindinput="handleInput"/>
       </view>
       <view class="input-item">
         <text class="tit">密码</text>
-        <input type="password"  placeholder="请输入密码" id="password" bindinput="handleInput"/>
+        <input value="password" type="password"  placeholder="请输入密码" id="password" bindinput="handleInput"/>
       </view>
     </view>
     <button class="confirm-btn" bindtap="login">登录</button>

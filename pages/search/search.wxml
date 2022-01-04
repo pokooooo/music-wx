@@ -23,7 +23,7 @@
         </view>
         <view style="font-size: 28rpx;height:60rpx;width:100%;border-bottom: 1rpx solid #eee">热搜榜</view>
         <view class="hotList">
-            <view class="hotItem" wx:for="{{hotList}}" wx:key="searchWord">
+            <view class="hotItem" wx:for="{{hotList}}" wx:key="searchWord" id="{{item.searchWord}}" bindtap="chooseHotItem">
                 <text style="margin: 0 10rpx">{{index + 1}}</text>
                 <text>{{item.searchWord}}</text>
                 <image class="iconImg" wx:if="{{item.iconUrl}}" src="{{item.iconUrl}}"></image>

@@ -29,7 +29,6 @@ Page({
     }
 
     this.getSongDetail().then(() => {
-      console.log(music);
       music.musicID = this.data.id
       let data = {
         name: this.data.song.name,
